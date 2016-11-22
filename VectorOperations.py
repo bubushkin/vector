@@ -4,9 +4,9 @@ Created on Nov 22, 2016
 @author: iaskarov
 '''
 
-from math import fsum, sqrt, pow, fabs, acos, pi, sin, tan, cos;
+from math import fsum, sqrt, pow, fabs, acos, pi, sin, tan, cos, asin, acos, atan;
 from types import NoneType;
-import Vector;
+from Vector import Vector;
 
 def vadd(vector1, vector2):
     
@@ -49,18 +49,16 @@ def pythagorean(hypothenus=None, opposite=None, adjacent=None):
     if(isinstance(adjacent, NoneType)):
         return sqrt(pow(hypothenus, 0x02) - pow(opposite, 0x02));
 
-def sohcahtoa(hypothenus=None, opposite=None, adjacent=None, trig="sin", rad=False):
-    
-    
-    thetha = None;
-    if(trig == 'sin'):
-        
-    
-    if(rad):
-
 def vcross(vector1, vector2):
-    pass;
     
+    cross = [
+        (vector1[1] * vector2[2]) - (vector2[1] * vector1[2]),
+        - ((vector1[0] * vector2[2]) - (vector2[0] * vector1[2])),
+        (vector1[0] * vector2[1]) - (vector2[0] * vector1[1]),
+        ]
+
+    return Vector(cross);
+
 def is_vparallel(vector1, vector2):
     
     coefficient = None;

@@ -9,7 +9,7 @@ Created on Nov 21, 2016
 @author: iaskarov
 '''
 
-from math import fsum, sqrt, pow, fabs, acos, pi;
+from math import fsum, sqrt, pow, fabs, acos, pi, sin, tan, cos;
 from types import NoneType;
 
 class Vector(object):
@@ -89,80 +89,4 @@ class Vector(object):
         return 'Vector: {} \nMagnitude: {} \nDirection: {} \n '.format(self.coordinates, self.magnitude, self.direction);
     
     def __eq__(self, v):
-        return self.coordinates == v.coordinates; 
-
-def vadd(vector1, vector2):
-    
-    vaux = [];
-    for v1, v2 in zip(vector1.coordinates, vector2.coordinates):
-        vaux.append(v1 + v2);
-    return Vector(vaux);
-    
-def vsubtract(vector1, vector2):
-    
-    vaux = [];
-    for v1, v2 in zip(vector1.coordinates, vector2.coordinates):
-        vaux.append(v1 - v2);
-    return Vector(vaux);
-
-def vcomponent(vector1, vector2):
-    return vsubtract(vector1, vector2);
-
-def vdot(vector1, vector2):
-    
-    dot = 0x0;
-    for v1, v2 in zip(vector1, vector2):
-        dot += round(float(v1) * float(v2), 3);
-    return dot;
-
-def vangle(vector1, vector2, rad=False):
-    
-    rads = acos(vdot(vector1.coordinates, vector2.coordinates)/(vector1.magnitude * vector2.magnitude));
-    if rad:
-        return rads;
-    else:
-        return rads * 180/pi;
-    
-def is_vparallel(vector1, vector2):
-    
-    coefficient = None;
-    parallel = False;
-    
-    for v1, v2 in zip(vector1.coordinates, vector2.coordinates):
-        multiplier = None;
-        if(isinstance(coefficient, NoneType)):
-            if(v1 > v2):
-                multiplier = v1/v2 if(v2 != 0x0) else 0x0;
-            else:
-                multiplier = v2/v1 if(v1 != 0x0) else 0x0;
-            coefficient = multiplier;
-        else:
-            if(v1 > v2):
-                multiplier = v1/v2 if(v2 != 0x0) else 0x0;
-            else:
-                multiplier = v2/v1 if(v1 != 0x0) else 0x0;
-            if(coefficient == multiplier):
-                parallel = True;
-
-    return parallel;
-
-def vprojection(vector1, vector2):
-    # Projection of vector1 onto vector2;
-    return vscalar_product(vdot(vector1.coordinates, vector2.unit), vector2.unit);
-
-def is_vorthogonal(vector1, vector2):
-    return vdot(vector1.coordinates, vector2.coordinates) == 0x0;
-
-def vscalar_product(scalar, vector):
-    
-    vaux = [];
-    for vix in vector:
-        vaux.append(scalar * vix);
-    return Vector(vaux);
-
-if __name__ == '__main__':
-    v1 = Vector([3.009, -6.172, 3.692, -2.51]);
-    v2 = Vector([6.404, -9.144, 2.759, 8.718]);
-    
-    proj_v1 = vprojection(v1, v2);
-    
+        return self.coordinates == v.coordinates;     
